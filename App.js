@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import "react-native-gesture-handler";
+import "react-native-reanimated";
+import { NavigationContainer } from "@react-navigation/native";
+import DrawerNavigator from "./DrawerNavigator";
+import { createStackNavigator } from "@react-navigation/stack";
+import Joke from "./Screens/Joke";
+const Stack = createStackNavigator();
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	return (
+		<>
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen
+						name="Home"
+						component={DrawerNavigator}
+						options={{ headerShown: false }}
+					/>
+					<Stack.Screen name="Joke" component={Joke} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		</>
+	);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
